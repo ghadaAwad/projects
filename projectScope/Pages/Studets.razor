@@ -1,0 +1,40 @@
+﻿@page "/Studets"
+@using projectScope.Data
+@using projectScope.Validator
+<h3>Studets</h3>
+<EditForm Model="@Students" OnInvalidSubmit="@SubmitForm">
+    <FluentValidationValideator />
+    <!-- <ValidationSummary /> -->
+
+    <br />
+    <lable>Name:</lable>
+    <InputText @bind-Value="@Students.Name" />
+    <ValidationMessage For="@(()=>Students.Name)" />
+
+
+    <br />
+    <lable>Age:</lable>
+    <InputNumber @bind-Value="@Students.Age" />
+    <ValidationMessage For="@(()=>Students.Age)" />
+
+    <br />
+    <lable>Email:</lable>
+    <InputText @bind-Value="@Students.Email" />
+    <ValidationMessage For="@(()=>Students.Email)" />
+
+    <br />
+    <lable>Address:</lable>
+    <InputText @bind-Value="@Students.Address" />
+    <ValidationMessage For="@(()=>Students.Address)" />
+
+    <br />
+    <button class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    Student Students{ get; set; } = new Student();
+    void SubmitForm()
+    {
+        Console.WriteLine("Form Submited");
+    }
+}

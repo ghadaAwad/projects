@@ -1,0 +1,19 @@
+﻿@page "/Charts"
+@using projectScope.Data
+@inject IJSRuntime jsRunTime
+<h3>Charts</h3>
+<div id="chartdiv"></div>
+<button class="btn btn-primary" @onclick="GetChartC">Generat Pie Chart</button>
+
+@code {
+    Chart chart = new Chart();
+    List<Chart> Chartss = new List<Chart>();
+    private async Task GetChartC()
+    {
+        Chartss=  chart.GetCharts();
+        await jsRunTime.InvokeVoidAsync("GeneratPieChart", Chartss);
+
+
+    }
+
+}

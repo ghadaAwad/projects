@@ -1,0 +1,112 @@
+﻿@page "/Credoperation"
+@using projectScope.Data
+@using projectScope.Service
+@inherits OwningComponentBase<EmpService>
+
+<button class="btn btn-primary" @onclick="@showpopup">Add new Records</button>
+@if (popup)
+{
+<div class="modal" tabindex="-1" style="display:block;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Records</h5>
+                <MudIcon Icon="@Icons.Material.Filled.Close" @onclick="@closepopup"/>
+</div>         
+            <EditForm Model="@objinsert" OnValidSubmit="@insertrec" Display="block">
+                <div class="modal-body">
+                    <br />
+                    <lable>EmpName:</lable>
+                    <InputText @bind-Value="@objinsert.EmpName" />
+                    <br />
+                    <br/>
+                    <lable>Department:</lable>
+                    <InputText @bind-Value="@objinsert.Department" Placeholder="Enter Department" />
+                    <br />
+                    <br />
+                    <lable>Salary:</lable>
+                    <InputNumber @bind-Value="@objinsert.Salary" />
+                    <br />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" @onclick="@closepopup">Save changes</button>
+
+                </div>
+            </EditForm>
+         
+           
+        </div>
+    </div>
+</div>
+}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Employee Id</th>
+                <th>Employee Name</th>
+                <th>Department</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Displaydata)
+            {
+            <tr>
+                <td>@item.EmpId</td>
+                <td>@item.EmpName</td>
+                <td>@item.Department</td>
+                <td>@item.Salary</td>
+                <td><button class="btn-info" @onclick="(() => editRec(item))">Edit</button></td>
+                <td><button class="btn-danger" @onclick="(() => DeletEmp(item))">Delet</button></td>
+            </tr>
+
+            }
+
+        </tbody>
+    </table>
+
+    @code {
+        List<Employeeinfo> Displaydata;
+        Employeeinfo objinsert = new Employeeinfo();
+        bool popup = false;
+        void showpopup() { popup = true; }
+        void closepopup() { popup = false; }
+
+        protected override void OnInitialized()
+        {
+            Displaydata = Service.GetEmployees();
+        }
+        void insertrec()
+        {
+            var objupdate = false;
+
+            if(objinsert.EmpId>0)
+            {
+                objupdate = Service.UpdateEmp(objinsert);
+                popup = false;
+            }
+            else
+            {
+                objinsert.EmpId = 0;
+                Service.AddEmployee(objinsert);
+            }
+
+            Displaydata = Service.GetEmployees();
+        }
+        void editRec(Employeeinfo ecopj)
+        {
+            objinsert = ecopj;
+            popup = true;
+
+        }
+        void DeletEmp(Employeeinfo ecopj)
+        {
+            Service.DeletEmp(ecopj);
+            Displaydata.Clear();
+            Displaydata = Service.GetEmployees();
+
+        }
+
+    }

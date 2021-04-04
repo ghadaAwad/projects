@@ -1,0 +1,106 @@
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+
+/*clock*/
+
+:root {
+    --color-primary: #3F3F3F;
+    --color-accent: #ff3636;
+    --color-background: #FFF;
+}
+
+* {
+    -webkit-transform-origin: inherit;
+    transform-origin: inherit;
+}
+
+.clock {
+    width: 30vmin;
+    height: 30vmin;
+    color: var(--color-primary);
+    fill: currentColor;
+    -webkit-transform-origin: 50px 50px;
+    transform-origin: 50px 50px;
+    -webkit-animation-name: fade-in;
+    animation-name: fade-in;
+    -webkit-animation-duration: 500ms;
+    animation-duration: 500ms;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+    .clock line {
+        stroke: currentColor;
+        stroke-linecap: round;
+    }
+
+.lines {
+    opacity: 0.5;
+    stroke-width: 0.5px;
+}
+
+
+.line-1 {
+    transform: rotate(30deg);
+}
+
+.line-2 {
+    transform: rotate(60deg);
+}
+
+.line-3 {
+    transform: rotate(90deg);
+}
+
+.line-4 {
+    transform: rotate(120deg);
+}
+
+.line-5 {
+    transform: rotate(150deg);
+}
+
+.line-6 {
+    transform: rotate(180deg);
+}
+
+.line-7 {
+    transform: rotate(210deg);
+}
+
+.line-8 {
+    transform: rotate(240deg);
+}
+
+.line-9 {
+    transform: rotate(270deg);
+}
+
+.line-10 {
+    transform: rotate(300deg);
+}
+
+.line-11 {
+    transform: rotate(330deg);
+}
+
+.line-12 {
+    transform: rotate(360deg);
+}
+
+
+
+.line-second {
+    color: var(--color-accent);
+    stroke-width: 1px;
+}
+
+.line-second1 {
+    color: var(--color-accent);
+    stroke-width: 1px;
+}
+
+
+
+/*End clock*/
+

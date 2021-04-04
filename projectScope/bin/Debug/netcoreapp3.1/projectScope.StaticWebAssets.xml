@@ -1,0 +1,4 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="_content/Blazored.Modal" Path="C:\Users\ghada\.nuget\packages\blazored.modal\5.1.0\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/MudBlazor" Path="C:\Users\ghada\.nuget\packages\mudblazor\2.0.7\build\..\staticwebassets\" />
+</StaticWebAssets>
