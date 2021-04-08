@@ -1,6 +1,8 @@
 ﻿
 // Code By Webdevtrick ( https://webdevtrick.com )
-function se(){
+
+
+/*function se() {
 
 
     setTime();
@@ -65,4 +67,4 @@ function setTime() {
     hourline[4].style.transform = `rotate(${hoursDeg + 240}deg)`;
 
 
-}
+*/

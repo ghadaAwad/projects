@@ -9,10 +9,13 @@ namespace projectScope.Data
     public class Employeeinfo
     {
         [Key]
-        public int EmpId { get; set; }
-        public String EmpName { get; set; }
-        public String Department { get; set; }
-        public int Salary { get; set; }
+        public int EmpId { get; set; } 
+        [Required]
+        public String EmpName { get; set; } 
+        [Required]
+        public String Department { get; set; } 
+        [Required]
+        public int Salary { get; set; } 
 
             }
 }

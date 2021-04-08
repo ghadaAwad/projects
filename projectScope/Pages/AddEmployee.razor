@@ -1,0 +1,44 @@
+﻿@page "/AddEmployee"
+@using projectScope.Data
+@inject HttpClient Http
+
+<h3>AddEmployee</h3>
+
+<form>
+    <div class="Row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for=" Name" class="custom-control-label">Name</label>
+                <input form="Name" class="form-control" @bind="@ObjEmp.EmpName" />
+            </div>
+            <div class="form-group">
+                <label for=" Department" class="custom-control-label">Department</label>
+                <input form="Department" class="form-control" @bind="@ObjEmp.Department" />
+            </div>
+            <div class="form-group">
+                <label for=" Salary" class="custom-control-label">Salary</label>
+                <input form="Salary" class="form-control" @bind="@ObjEmp.Salary" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button class="btn-info" @onclick="@CreateEmp">Save</button>
+            <button class="btn-danger" @onclick="@Cancel">Cancel</button>
+        </div>
+    </div>
+</form>
+@code {
+
+    Employeeinfo ObjEmp = new Employeeinfo();
+
+    protected void CreateEmp()
+    {
+        // ObjEmpService.AddEmployee(ObjEmp);
+        Http.PostJsonAsync("http://localhost:56001/api/Employee", ObjEmp);
+
+
+    }
+    protected void Cancel()
+    {
+
+    }
+}

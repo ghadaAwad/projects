@@ -1,0 +1,61 @@
+﻿@page "/DeleteEmployee/{CurrentID}"
+@using projectScope.Data
+@inject HttpClient Http
+@inject NavigationManager UriHelper
+
+<h3>Delet Employee</h3>
+
+
+<form>
+    <div class="Row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label>EMP ID:</label>
+                <label>@ObjEmp.EmpId</label>
+            </div>
+            <div class="form-group">
+                <label>Name:</label>
+                <label>@ObjEmp.EmpName</label>
+            </div>
+            <div class="form-group">
+                <label>Department:</label>
+                <label>@ObjEmp.Department</label>
+            </div>
+            <div class="form-group">
+                <label>Salary:</label>
+                <label>@ObjEmp.Salary</label>
+            </div>
+
+            <div class="col-md-4">
+                <button class="btn-info" @onclick="@DeleteEmp">Delete</button>
+                <button class="btn-danger" @onclick="@Cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>
+@code {
+    [Parameter]
+    public String CurrentID { get; set; }
+
+
+    Employeeinfo ObjEmp = new Employeeinfo();
+
+    protected override async Task OnInitializedAsync()
+    {
+        //  ObjEmp = await Task.Run(() => ObjEmpService.GetEmployeeByID(Convert.ToInt32(CurrentID)));
+
+        ObjEmp = await Http.GetJsonAsync<Employeeinfo>("http://localhost:56001/api/Employee/GetById/" + CurrentID);
+
+    }
+
+    protected void DeleteEmp()
+    {
+        //ObjEmpService.DeletEmp(ObjEmp.EmpId);
+        Http.DeleteAsync("http://localhost:56001/api/Employee/DeleteById/" + CurrentID);
+        UriHelper.NavigateTo("DBEmployeeDappar");
+    }
+    protected void Cancel()
+    {
+        /* NavigationManager.NavigateTo("DBEmployeeDappar");*/
+    }
+}

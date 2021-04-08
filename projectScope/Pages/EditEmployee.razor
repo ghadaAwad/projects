@@ -1,0 +1,60 @@
+﻿@page "/EditEmployee/{CurrentID}"
+@using projectScope.Data
+@inject HttpClient Http
+@inject NavigationManager UriHelper
+
+<h3>Edit Employee</h3>
+
+
+<form>
+    <div class="Row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <input form="Name" class="form-control" @bind="@ObjEmp.EmpId" />
+            </div>
+            <div class="form-group">
+                <label for=" Name" class="custom-control-label">Name</label>
+                <input form="Name" class="form-control" @bind="@ObjEmp.EmpName" />
+            </div>
+            <div class="form-group">
+                <label for=" Department" class="custom-control-label">Department</label>
+                <input form="Department" class="form-control" @bind="@ObjEmp.Department" />
+            </div>
+            <div class="form-group">
+                <label for=" Salary" class="custom-control-label">Salary</label>
+                <input form="Salary" class="form-control" @bind="@ObjEmp.Salary" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button class="btn-info" @onclick="@Update">Save</button>
+            <button class="btn-danger" @onclick="@Cancel">Cancel</button>
+        </div>
+    </div>
+</form>
+@code {
+    [Parameter]
+    public String CurrentID { get; set; }
+
+
+    Employeeinfo ObjEmp = new Employeeinfo();
+
+    protected override async Task OnInitializedAsync()
+    {
+        //  ObjEmp = await Task.Run(() => ObjEmpService.GetEmployeeByID(Convert.ToInt32(CurrentID)));
+        ObjEmp = await Http.GetJsonAsync<Employeeinfo>("http://localhost:56001/api/Employee/GetById/" + CurrentID);
+      
+    }
+
+    protected void Update()
+    {
+        // ObjEmpService.UbdateEmp(ObjEmp);
+        Http.PutJsonAsync("http://localhost:56001/api/Employee", ObjEmp);
+     
+    }
+    protected void Cancel()
+    {
+        /* NavigationManager.NavigateTo("DBEmployeeDappar");*/
+        UriHelper.NavigateTo("DBEmployeeDappar");
+    }
+}
+

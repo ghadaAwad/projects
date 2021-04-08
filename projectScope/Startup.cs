@@ -38,10 +38,11 @@ namespace projectScope
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddMudServices();
-        
-          services.AddScoped<EmpService, EmpService>();
+            services.AddScoped<EmployeeServiceDapper>();
+            services.AddScoped<EmpService, EmpService>();
             services.AddBlazoredModal();
-
+            services.AddScoped<HttpClient,HttpClient>();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

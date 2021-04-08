@@ -1,0 +1,471 @@
+﻿@page "/DBEmployeeDappar"
+@using projectScope.Data
+@using projectScope.Validator
+@inject HttpClient Http
+@inject ISnackbar Snackbar
+@using System.ComponentModel.DataAnnotations;
+
+
+
+<div class="container">
+    <div class=" row mb-md-5" style="background-color:darksalmon;">
+        <div class="col-md-8 mt-3">
+            <MudText Align="Align.Left"> <h6>@pages</h6></MudText>
+        </div>
+        <div class="col-md-4">
+            <MudBreadcrumbs Items="_items"></MudBreadcrumbs>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-md-12 mt-md-5">
+        <MudTabs Elevation="1" Rounded="true" PanelClass="pa-6">
+
+            <MudTabPanel Text="Employee Information" ToolTip="ToolTip One" @onclick="page1" Class="page1">
+
+                <MudText>
+                    <button class="btn btn-secondary" @onclick="Showpopup">
+                        <span class="oi oi-plus" aria-hidden="true"></span>Add New
+                    </button>
+                    <br />
+                    <br />
+                    @if (popup)
+                    {
+                        <div class="modal" tabindex="-1" style="display:block;  margin:auto">
+
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Records</h5>
+
+                                        <button type="button" @onclick="closepopup"><MudIcon Icon="@Icons.Material.Outlined.Close" /></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <EditForm Model="@objinsert" OnValidSubmit="@Insert">
+                                            <FluentValidationValideator />
+
+                                            <div class="Row">
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label>Name  </label><br />
+                                                        <InputText @bind-Value="@objinsert.EmpName" id="inputText" />
+                                                        <ValidationMessage For="@(()=>objinsert.EmpName)" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Department  </label><br />
+                                                        <InputText @bind-Value="@objinsert.Department" id="inputText" />
+                                                        <ValidationMessage For="@(()=>objinsert.Department)" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Salary  </label><br />
+                                                        <InputNumber @bind-Value="@objinsert.Salary" id="inputText" />
+                                                        <ValidationMessage For="@(()=>objinsert.Salary)" />
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="col-md-4">
+                                                        <button class="btn btn-info" style="width:150px;">
+                                                            Save
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </EditForm>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else { popup = false; }
+                    <!---End Model Popup Add And Edit-->
+                    <!--Model Popup Delete-->
+                    @if (popupDelete)
+                    {
+                        <div class="modal mt-md-5" tabindex="-1" style="display:block;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Delete Records</h5>
+                                        <button type="button" @onclick="closepopupDelete"><MudIcon Icon="@Icons.Material.Outlined.Close" /></button>
+                                    </div>
+                                    <EditForm Model="objinsert" OnValidSubmit="DeleteEmployee">
+                                        <div class="modal-body">
+                                            <div class="Row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>EMP ID:</label>
+                                                        <label style="color:darkblue">@objinsert.EmpId</label>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Name:</label>
+                                                        <label style="color:darkblue">@objinsert.EmpName</label>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Department:</label>
+                                                        <label style="color:darkblue">@objinsert.Department</label>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Salary:</label>
+                                                        <label style="color:darkblue">@objinsert.Salary</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button class=" btn btn-info" @onclick="closepopupDelete" style="width:160px;">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </EditForm>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else { popupDelete = false; }
+
+                    <!--End model popup Delete-->
+                    <!--model popup Detils-->
+
+                    @if (popupDetils)
+                    {
+                        <div class="modal" tabindex="-1" style="display:block;  margin:auto">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" style="text-align:center;">Detils Records</h5>
+
+                                        <button type="button" @onclick="closepopupDitils"><MudIcon Icon="@Icons.Material.Outlined.Close" /></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <EditForm Model="objinsert">
+                                            <div class="Row">
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label for=" Name" class="control-label">Emp Id  </label>
+                                                        <input form="Name" readonly class="form-control" @bind="@objinsert.EmpId" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for=" Name" class="control-label">Name  </label>
+                                                        <input form="Name" readonly class="form-control" @bind="@objinsert.EmpName" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for=" Department" class="control-label">Department  </label>
+                                                        <input form="Department" readonly class="form-control" @bind="@objinsert.Department" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for=" Salary" class="control-label">Salary  </label>
+                                                        <input form="Salary" readonly class="form-control" @bind="@objinsert.Salary" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+
+                                                </div>
+                                            </div>
+
+                                        </EditForm>
+                                        <div class="modal-footer">
+                                            <button class=" btn btn-danger" @onclick="closepopupDitils" style="width:190px;">Cancel</button>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else { popupDetils = false; }
+                    <!--End model popup Detils-->
+
+                    @if (ObjEmp == null)
+                    {
+                        <p><em>Loding...</em></p>
+                    }
+                    else
+                    {
+
+                        <MudSimpleTable id="example" class="table table-hover" FixedHeader="@fixedheader" Style="@(fixedheader?"height:260px;":"")">
+                            <table class="table table-hover">
+                                <thead>
+
+                                    <tr>
+                                        <th style="border-bottom-color: #B71C1C;  border-bottom-width: 2px;">Employee Id</th>
+                                        <th style="border-bottom-color: #B71C1C; border-bottom-width: 2px;">Employee Name</th>
+                                        <th style="        border-bottom-color: #B71C1C;border-bottom-width: 2px;">Department</th>
+                                        <th style="border-bottom-color: #B71C1C;border-bottom-width:2px;">Salary</th>
+                                        <th class="text-center" style="border-bottom-color: #B71C1C; border-bottom-width:2px">Action</th>
+
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ObjEmp)
+                                    {
+                                        <tr>
+
+                                            <td class="td-emp">@item.EmpId</td>
+                                            <td class="td-emp">@item.EmpName</td>
+                                            <td class="td-emp">@item.Department</td>
+                                            <td class="td-emp">@item.Salary</td>
+                                            <td>
+
+                                                <MudTd>
+                                                    <button class="nav-link" @onclick="(()=>EditEmp(item))">
+                                                        <MudIcon Icon="@Icons.Material.Outlined.Edit" Style="color:blue;" />Edit
+                                                    </button>
+                                                </MudTd>
+                                                <MudTd>
+
+                                                    <button class="nav-link" @onclick="(()=>DeleteEmp(item))">
+                                                        <MudIcon Icon="@Icons.Material.Outlined.Delete" Style="color:red;" />Delete
+                                                    </button>
+                                                </MudTd>
+                                                <MudTd>
+                                                    <button class="nav-link" @onclick="(()=>DetilsEmp(item))">
+                                                        <MudIcon Icon="@Icons.Material.Outlined.Info" Style="color:darkslateblue;" />Detils
+                                                    </button>
+                                                </MudTd>
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </MudSimpleTable>
+                        <MudSwitch @bind-Checked="@fixedheader">Fixed Header</MudSwitch>
+
+
+                    }
+
+                </MudText>
+            </MudTabPanel>
+            <MudTabPanel Text="Clock" ToolTip="ToolTip Two" @onclick="page2">
+                <MudText>
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col-lg-3  pl-3">
+
+                                <MudCard>
+                                    <MudCardHeader>
+
+                                        <!--  <a href="C:\Users\ghada\source\repos\projectScope\projectScope\Pages\Index.razor">C:\Users\ghada\source\repos\projectScope\projectScope\Pages\Index.razor</a>-->
+                                        <CardHeaderActions>
+                                            <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Default" />
+                                        </CardHeaderActions>
+                                    </MudCardHeader>
+                                    <MudCardContent>
+                                        <SVGClock />
+                                    </MudCardContent>
+                                    <MudCardContent>
+                                        <MudText Typo="Typo.body1">Mecca</MudText>
+                                        <MudText Typo="Typo.body2">This time Now in Mecca</MudText>
+                                    </MudCardContent>
+                                    <MudCardActions>
+                                        <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+                                        <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+                                    </MudCardActions>
+                                </MudCard>
+                            </div>
+                            <div class="col-lg-3  pl-3">
+                                <MudCard>
+                                    <MudCardHeader>
+
+
+                                        <CardHeaderActions>
+                                            <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Default" />
+                                        </CardHeaderActions>
+                                    </MudCardHeader>
+                                    <MudCardContent>
+                                        <SVGClock />
+                                    </MudCardContent>
+                                    <MudCardContent>
+                                        <MudText Typo="Typo.body1">London</MudText>
+                                        <MudText Typo="Typo.body2">This time Now in London</MudText>
+                                    </MudCardContent>
+                                    <MudCardActions>
+                                        <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+                                        <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+                                    </MudCardActions>
+                                </MudCard>
+                            </div>
+                            <div class="col-lg-3  pl-3">
+                                <MudCard>
+                                    <MudCardHeader>
+
+
+                                        <CardHeaderActions>
+                                            <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Default" />
+                                        </CardHeaderActions>
+                                    </MudCardHeader>
+                                    <MudCardContent>
+                                        <SVGClock />
+                                    </MudCardContent>
+                                    <MudCardContent>
+                                        <MudText Typo="Typo.body1">Tokyo</MudText>
+                                        <MudText Typo="Typo.body2">This time Now in Tokyo</MudText>
+                                    </MudCardContent>
+                                    <MudCardActions>
+                                        <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+                                        <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+                                    </MudCardActions>
+                                </MudCard>
+                            </div>
+                            <div class="col-lg-3  pl-3">
+                                <MudCard>
+                                    <MudCardHeader>
+
+
+                                        <CardHeaderActions>
+                                            <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Default" />
+                                        </CardHeaderActions>
+                                    </MudCardHeader>
+                                    <MudCardContent>
+                                        <SVGClock />
+                                    </MudCardContent>
+                                    <MudCardContent>
+                                        <MudText Typo="Typo.body1">NY</MudText>
+                                        <MudText Typo="Typo.body2">This time Now in NY</MudText>
+                                    </MudCardContent>
+                                    <MudCardActions>
+                                        <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+                                        <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+                                    </MudCardActions>
+                                </MudCard>
+                            </div>
+                        </div>
+                    </div>
+                </MudText>
+            </MudTabPanel>
+            <MudTabPanel Text="Item Three" ToolTip="ToolTip Three" @onclick="page3">
+                <MudText>Item Three</MudText>
+            </MudTabPanel>
+        </MudTabs>
+    </div>
+</div>
+
+
+@code {
+
+    IEnumerable<Employeeinfo> ObjEmp;
+    Employeeinfo objinsert = new Employeeinfo();
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        // ObjEmp =await ObjEmpService.GetEmployee();
+        await PopulateEmps();
+
+    }
+    async Task  PopulateEmps()
+    {
+        ObjEmp = await Http.GetJsonAsync<List<Employeeinfo>>("http://localhost:56001/api/Employee");
+    }
+    bool popup = false;
+    bool fixedheader = true;
+    public void Showpopup() { popup = true;
+        objinsert.EmpId = 0;
+        objinsert.EmpName = "";
+        objinsert.Department = "";
+        objinsert.Salary=0;
+    }
+    public void closepopup() { popup = false; }
+
+    void Insert()
+    {
+
+        if (objinsert.EmpId > 0)
+        {
+            Http.PutJsonAsync("http://localhost:56001/api/Employee", objinsert);
+            popup = false;
+            Snackbar.Add("The recorod is Edit", Severity.Success);
+
+
+        }
+        else
+        {
+
+            Http.PostJsonAsync("http://localhost:56001/api/Employee", objinsert);
+            Snackbar.Add("The recorod is Add", Severity.Success);
+            Http.GetAsync("http://localhost:56001/api/Employee");
+            popup = false;
+        }
+
+
+
+
+    }
+    void EditEmp(Employeeinfo EmID)
+    {
+        objinsert = EmID;
+        popup = true;
+    }
+
+    bool popupDelete = false;
+    public void ShowpopupDelete() { popupDelete = true; }
+    public void closepopupDelete() { popupDelete = false; }
+
+
+    void DeleteEmp(Employeeinfo EmID)
+    {
+        objinsert = EmID;
+        popupDelete = true;
+    }
+    void DeleteEmployee()
+    {
+        if (objinsert.EmpId > 0)
+        {
+            Http.DeleteAsync("http://localhost:56001/api/Employee/DeleteById/" + objinsert.EmpId);
+            popupDelete = false;
+            Snackbar.Add("The recorod is Delete", Severity.Success);
+            //Http.GetAsync("http://localhost:56001/api/Employee");
+            
+             PopulateEmps();
+
+        }
+        else { popupDelete = false; }
+    }
+    bool popupDetils = false;
+    void DetilsEmp(Employeeinfo EmID)
+    {
+        objinsert = EmID;
+        popupDetils = true;
+    }
+    void closepopupDitils() { popupDetils = false; }
+
+
+    string pages = "Employee informatin";
+    void page1()
+
+    {
+        pages = "Employee informatin";
+    }
+    void page2()
+
+    {
+        pages = "Clock";
+    }
+    void page3()
+
+    {
+        pages = "page 3";
+    }
+    // Bread Crumb
+    private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
+{
+        new BreadcrumbItem("Home", href: "#"),
+        new BreadcrumbItem("Link 1", href: "#"),
+        new BreadcrumbItem("Link 2", href: null, disabled: true)
+    };
+    //End Bread crumb
+}
+

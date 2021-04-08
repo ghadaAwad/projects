@@ -3,6 +3,7 @@
 @using projectScope.Service
 @inherits OwningComponentBase<EmpService>
 
+
 <button class="btn btn-primary" @onclick="@showpopup">Add new Records</button>
 @if (popup)
 {
@@ -58,7 +59,7 @@
                 <td>@item.EmpName</td>
                 <td>@item.Department</td>
                 <td>@item.Salary</td>
-                <td><button class="btn-info" @onclick="(() => editRec(item))">Edit</button></td>
+                <td><button class="btn-info"  @onclick="(() => editRec(item))">Edit</button></td>
                 <td><button class="btn-danger" @onclick="(() => DeletEmp(item))">Delet</button></td>
             </tr>
 
@@ -82,7 +83,7 @@
         {
             var objupdate = false;
 
-            if(objinsert.EmpId>0)
+            if (objinsert.EmpId > 0)
             {
                 objupdate = Service.UpdateEmp(objinsert);
                 popup = false;
@@ -94,12 +95,12 @@
             }
 
             Displaydata = Service.GetEmployees();
+
         }
         void editRec(Employeeinfo ecopj)
         {
             objinsert = ecopj;
             popup = true;
-
         }
         void DeletEmp(Employeeinfo ecopj)
         {

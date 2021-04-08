@@ -96,6 +96,7 @@ C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\Ra
 C:\Users\ghada\source\repos\projectScope\projectScope\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\ghada\source\repos\projectScope\projectScope\bin\Debug\netcoreapp3.1\Blazored.Modal.dll
 C:\Users\ghada\source\repos\projectScope\projectScope\bin\Debug\netcoreapp3.1\Microsoft.JSInterop.WebAssembly.dll
+C:\Users\ghada\source\repos\projectScope\projectScope\bin\Debug\netcoreapp3.1\Dapper.dll
 C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\projectScope.csproj.CoreCompileInputs.cache
 C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\projectScope.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\RazorDeclaration\projectScope.dll
@@ -112,3 +113,11 @@ C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\Ra
 C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\Razor\Shared\NavMenu.razor.g.cs
 C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\Razor\Shared\SurveyPrompt.razor.g.cs
 C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\Razor\_Imports.razor.g.cs
+C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\AddEmployee.razor.g.cs
+C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\DBEmployeeDappar.razor.g.cs
+C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\Razor\Pages\AddEmployee.razor.g.cs
+C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\Razor\Pages\DBEmployeeDappar.razor.g.cs
+C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\EditEmployee.razor.g.cs
+C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\Razor\Pages\EditEmployee.razor.g.cs
+C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\DeleteEmployee.razor.g.cs
+C:\Users\ghada\source\repos\projectScope\projectScope\obj\Debug\netcoreapp3.1\Razor\Pages\DeleteEmployee.razor.g.cs
