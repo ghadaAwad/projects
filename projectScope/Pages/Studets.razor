@@ -1,6 +1,7 @@
 ﻿@page "/Studets"
 @using projectScope.Data
 @using projectScope.Validator
+@layout EmpComponent
 <h3>Studets</h3>
 <EditForm Model="@Students" OnInvalidSubmit="@SubmitForm">
     <FluentValidationValideator />

@@ -1,4 +1,14 @@
 ﻿<StaticWebAssets Version="1.0">
   <ContentRoot BasePath="_content/Blazored.Modal" Path="C:\Users\ghada\.nuget\packages\blazored.modal\5.1.0\build\..\staticwebassets\" />
   <ContentRoot BasePath="_content/MudBlazor" Path="C:\Users\ghada\.nuget\packages\mudblazor\2.0.7\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor" Path="C:\Users\ghada\.nuget\packages\syncfusion.blazor\19.1.0.56\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.Calendars" Path="C:\Users\ghada\.nuget\packages\syncfusion.blazor.calendars\19.1.0.56\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.Core" Path="C:\Users\ghada\.nuget\packages\syncfusion.blazor.core\19.1.0.56\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.Data" Path="C:\Users\ghada\.nuget\packages\syncfusion.blazor.data\19.1.0.56\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.Inputs" Path="C:\Users\ghada\.nuget\packages\syncfusion.blazor.inputs\19.1.0.56\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.Lists" Path="C:\Users\ghada\.nuget\packages\syncfusion.blazor.lists\19.1.0.56\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.Popups" Path="C:\Users\ghada\.nuget\packages\syncfusion.blazor.popups\19.1.0.56\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.Spinner" Path="C:\Users\ghada\.nuget\packages\syncfusion.blazor.spinner\19.1.0.56\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.SplitButtons" Path="C:\Users\ghada\.nuget\packages\syncfusion.blazor.splitbuttons\19.1.0.56\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.Themes" Path="C:\Users\ghada\.nuget\packages\syncfusion.blazor.themes\19.1.0.56\build\..\staticwebassets\" />
 </StaticWebAssets>

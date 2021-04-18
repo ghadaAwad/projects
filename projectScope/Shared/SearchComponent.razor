@@ -1,0 +1,20 @@
+﻿<label style="font-size:medium;">@columnTitle</label>
+<br />
+<input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search " @oninput="OnSearchTextChanged">
+<br />
+            
+      
+
+
+
+
+                @code {
+                    [Parameter]
+                    public string columnTitle { set; get; }
+                    [Parameter]
+                    public EventCallback<ChangeEventArgs> OnSearchTextChanged { set; get; }
+
+
+
+
+                }

@@ -1,5 +1,9 @@
 ﻿@inherits LayoutComponentBase
-
+@using projectScope.Data
+@using projectScope.Pages
+@inject HttpClient Http
+@inject ISnackbar Snackbar
+@using System.ComponentModel.DataAnnotations;
 
 
 <div class="sidebar">
@@ -7,17 +11,32 @@
 
 </div>
 
+
+
 <div class="main">
 
     <div class="content px-4">
         @Body
     </div>
 </div>
+<!--
+<MudIcon Icon="@Icons.Material.Outlined.Search" @onclick="@showSearch"></MudIcon>"
+@if (search)
+{
+    <div class="Row px-6 mx-3 py-3 mb-3" style="background-color:coral;color:aliceblue;">
+        <MudIcon Icon="@Icons.Material.Outlined.Close" @onclick="@closeSearch" Style="margin-left:80%;"></MudIcon>
+        <div class="row" style="margin-top:30%">
+            <SearchComponent columTitle="Employee Name" OnSearchTextChanged="OnEmployeeinfoSearchTextChanged" />
+        </div>
+        <div class="row">
+           <button class="btn btn-secondary" style="width:40%;">Search</button>
+        </div>
+    </div>
+}
+-->
 <MudThemeProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 
-@code {
 
-}

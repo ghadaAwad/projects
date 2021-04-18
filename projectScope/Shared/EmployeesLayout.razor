@@ -1,0 +1,38 @@
+﻿@inherits LayoutComponentBase
+@layout MainLayout
+
+    <div class="Row px-3 py-3 mb-6 "  style="background-color: #6A1B9A;color: aliceblue; width: 76%;position: fixed;">
+        <NavLink class="mx-6"style="color: aliceblue;" href="">Home</NavLink>
+        <NavLink class="mx-6" style="color: aliceblue;" href="">Home</NavLink>
+        <NavLink class="mx-6" style="color: aliceblue;"href="">Home</NavLink>
+    </div>
+<br />
+    <div class="main">
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+
+
+
+
+    @code {
+        private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
+{
+        new BreadcrumbItem("Home", href: "#"),
+        new BreadcrumbItem("Link 1", href: "#"),
+        new BreadcrumbItem("Link 2", href: null, disabled: true)
+    };
+    }
+
+
+
+
+
+
+
+
+
+
+

@@ -17,6 +17,8 @@ using Microsoft.EntityFrameworkCore;
 using projectScope.Service;
 using Blazored.Modal;
 
+
+
 namespace projectScope
 {
     public class Startup
@@ -32,6 +34,7 @@ namespace projectScope
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Myconnection")));
             services.AddRazorPages();
             services.AddScoped<EmployeeService>();
@@ -42,7 +45,8 @@ namespace projectScope
             services.AddScoped<EmpService, EmpService>();
             services.AddBlazoredModal();
             services.AddScoped<HttpClient,HttpClient>();
-           
+          
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

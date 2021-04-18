@@ -108,6 +108,13 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 15 "C:\Users\ghada\source\repos\projectScope\projectScope\_Imports.razor"
+using Syncfusion.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\ghada\source\repos\projectScope\projectScope\Pages\Charts.razor"
 using projectScope.Data;
 

@@ -214,8 +214,17 @@ path:hover {
     border: solid 1px #CFD8DC;
 }
 thead {
-    color: #424242;
+    border-bottom-color: #424242;
+    border-bottom-width: 2px;
 }
 .nav-link:hover {
     background-color: #E0E0E0;
 }
+card{
+    opacity:0.2;
+}
+MudBreadcrumbs{
+    background-color:indianred;
+    color:aliceblue;
+}
+
